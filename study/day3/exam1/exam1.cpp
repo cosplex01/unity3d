@@ -6,6 +6,10 @@
 
 int main()
 {
+	printf_s("================\n");
 	printf_s("反感してますよ。");
+	printf_s("%d",10);
+	printf_s("%d %d \n", 10,40);
+	printf_s("\\ \x31 \x41 \x22 \n");
 }
 
