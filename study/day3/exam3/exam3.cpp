@@ -3,6 +3,8 @@
 
 #include "pch.h"
 #include <stdio.h>
+#include <Windows.h>
+#include <iostream>
 
 int main()
 {
@@ -12,6 +14,8 @@ int main()
 	int sayongyang = 1;
 	double segum = 0.0;
 	double gojiseryogum = 0.0;
+	CHAR texts[800] = ""; //lpcwstr 형식변환을 위해서 char행렬변수 생성
+	TCHAR text[600] = {0, }; //lpcwstr 형식변환을 위해서 tchar행렬변수 생성
 
 	//printf_s("두개의 수를 입력하시오");
 	printf_s("전기사용량을 입력하세요(kw)");
@@ -23,13 +27,10 @@ int main()
 	gojiseryogum = zoncheyogum + segum;
 	printf_s("전기사용요금은 %lf 원 입니다\n", gojiseryogum);
 
-	//result = (num1 + num2) / 2.0;
-
-	//printf_s("결과는 :%lf\n",result);
-
-//	printf_s("결과는 :%d\n", result);
-
-	//printf_s("결과는 :%ld\n", ((int)(&num1) - (int)(&num2)));
-
+	sprintf_s(texts,"전기요금은 이것입니다: %d\n", (int)gojiseryogum);
+	
+	MultiByteToWideChar(CP_ACP, MB_PRECOMPOSED, texts, strlen(texts), text, 256); //lpcwstr형변환시도
+	MessageBox(NULL, text, TEXT("정보창"), MB_OK);
+	
 	return 0;
 }
