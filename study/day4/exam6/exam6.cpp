@@ -12,4 +12,7 @@ int main()
 	printf_s("%d, %lf\n", (int)_pi, _pi); //실수의 표현을 생각한다
 
 	printf_s("\\	A\tB	\\ \n");
+	printf_s("\x41	\\ \n");
+
+	printf_s("\x42 \u2664 \u2665 %lf\n", _pi); //유니코드 문자도 출력하자
 }
