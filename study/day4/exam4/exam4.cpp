@@ -18,12 +18,12 @@ int main()
 	//printf_s("%lf \n", num3);
 
 	double DaysForYears = 365.2422;
+	int years = 0;
 	int days = 0;
+	printf_s("몇년이에요? :  \n");
+	scanf_s("%d", &years);
 
-	printf_s("1년은 몇일입니까? :  \n");
-	scanf_s("%d", &days);
-
-	double total_days = days - DaysForYears;
+	double total_days = years * DaysForYears;
 	days = total_days;
 	double total_hours = (total_days - days) * 24;
 	int hour = total_hours;
