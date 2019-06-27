@@ -7,4 +7,7 @@ int main()
 {
 	int num = -1;
 	printf_s("%d, %u\n", num, num); //정수의 부호있고 없기를 출력하기 옵션
+
+	double _pi = 3.1445926;
+	printf_s("%d, %lf\n", (int)_pi, _pi); //정수의 부호있고 없기를 출력하기 옵션
 }
