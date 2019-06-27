@@ -9,5 +9,7 @@ int main()
 	printf_s("%d, %u\n", num, num); //정수의 부호있고 없기를 출력하기 옵션
 
 	double _pi = 3.1445926;
-	printf_s("%d, %lf\n", (int)_pi, _pi); //정수의 부호있고 없기를 출력하기 옵션
+	printf_s("%d, %lf\n", (int)_pi, _pi); //실수의 표현을 생각한다
+
+	printf_s("\\	A\tB	\\ \n");
 }
