@@ -13,53 +13,14 @@ void _Sum(int a, int b);
 void _Minus(int num1, int num2);
 void _Multi(int num1, int num2);
 void _Devide(int num1, int num2);
+void calculator(); //사칙연산을 통합 담당할 함수
 
 int main()
 {
-	int result;
-	result = sumint(4, 6);
-	int number1,number2 = 0;
-	char check;
-
-	printf_s("%d\n", result);
-
-	printf_s("%d\n",sumint(2,3));
-	printf_s("%d\n",sumint(4,3));
-	printf_s("%d\n",sumint(5,3));
-
-	printf_s("%d\n", subInt(2, 3));
-	printf_s("%d\n", subInt(4, 3));
-	printf_s("%d\n", subInt(5, 3));
-
 	printf_s("수를 계산하기 위해서 계산식을 넣으세요 : ex> a+b \n");
-	scanf_s("%d%c%d", &number1, &check,sizeof(check), &number2);
+	calculator();
 
-	switch(check)
-	{
-		case '+':
-			result = sumint(number1,number2);
-			printf_s("%d + %d = %d\n", number1, number2, result);
-			_Sum(number1,number2);
-			break;
-		case '-':
-			result = subInt(number1, number2);
-			printf_s("%d - %d = %d\n", number1, number2, result);
-			_Minus(number1,number2);
-			break;
-		case '/':
-			result = divideInt(number1,number2);
-			printf_s("%d / %d = %d\n", number1, number2, result);
-			_Devide(number1, number2);
-			break;
-		case '*':
-			result =  multiInt(number1,number2);
-			printf_s("%d * %d = %d\n", number1, number2, result);
-			_Multi(number1, number2);
-			break;
-		default:
-			printf_s("입력식이 문제라니깐~");
-			break;
-	}
+	return 0;
 }
 int sumint(int num1, int num2) //+
 {
@@ -96,4 +57,41 @@ void _Multi(int num1, int num2)
 void _Devide(int num1, int num2)
 {
 	printf_s("두수의 나눈 몫은 : %d\n", divideInt(num1, num2));
+}
+void calculator() //사칙연산 계산
+{
+	int result;
+	result = sumint(4, 6);
+	int number1, number2 = 0;
+	char check;
+	
+	printf_s("%d\n", result);
+	scanf_s("%d%c%d", &number1, &check, sizeof(check), &number2);
+	
+	switch (check)
+	{
+	case '+':
+		result = sumint(number1, number2);
+		printf_s("%d + %d = %d\n", number1, number2, result);
+		_Sum(number1, number2);
+		break;
+	case '-':
+		result = subInt(number1, number2);
+		printf_s("%d - %d = %d\n", number1, number2, result);
+		_Minus(number1, number2);
+		break;
+	case '/':
+		result = divideInt(number1, number2);
+		printf_s("%d / %d = %d\n", number1, number2, result);
+		_Devide(number1, number2);
+		break;
+	case '*':
+		result = multiInt(number1, number2);
+		printf_s("%d * %d = %d\n", number1, number2, result);
+		_Multi(number1, number2);
+		break;
+	default:
+		printf_s("입력식이 문제라니깐~");
+		break;
+	}
 }
