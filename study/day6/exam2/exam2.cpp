@@ -29,14 +29,16 @@ void pushData(int nBuf[], int nBufLength, int _ndata) //push
 		}
 	}
 }
-void popData(int nBuf[], int nBufLength) //pop
+int popData(int nBuf[], int nBufLength) //pop
 {
 	for (int i = 0; i < nBufLength; i++)
 	{
 		if (nBuf[i] == -1) {
 			if (i > 0)
 			{
+				int _r = nBuf[i - 1];
 				nBuf[i - 1] = -1;
+				return _r;
 			}
 			else
 			{
@@ -46,6 +48,8 @@ void popData(int nBuf[], int nBufLength) //pop
 			break;
 		}
 	}
+	return -1;
+	
 }
 int main()
 {
@@ -76,7 +80,7 @@ int main()
 			pushData(nBuf, nBufLength, _num);
 			break;
 		case 3:
-			popData(nBuf, nBufLength);
+			printf_s("pop : %d", popData(nBuf, nBufLength)); 
 			break;
 		default:
 			break;
