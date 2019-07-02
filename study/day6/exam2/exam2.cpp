@@ -7,7 +7,14 @@ void showData(int nBuf[], int nBufLength) //show
 {
 	for (int i = 0; i < nBufLength; i++)
 	{
-		if (nBuf[i] == -1)break;
+		if (nBuf[i] == -1)
+		{
+			if (i <= 0)
+			{
+				printf_s("데이터가 없습니다\n");
+			}
+			break;
+		}
 		printf_s("%d", nBuf[i]);
 	}
 }
@@ -16,19 +23,26 @@ void pushData(int nBuf[], int nBufLength, int _ndata) //push
 	for (int i = 0; i < nBufLength; i++)
 	{
 		if (nBuf[i] == -1) {
-			nBuf[i] = 3;
+			nBuf[i] = _ndata;
 			nBuf[i + 1] = -1;
 			break;
 		}
 	}
 }
-void popData(int nBuf[], int nBufLength, int _ndata) //pop
+void popData(int nBuf[], int nBufLength) //pop
 {
-	for (int i = nBufLength; i > 0; i--)
+	for (int i = 0; i < nBufLength; i++)
 	{
 		if (nBuf[i] == -1) {
-			nBuf[i] = 0; // 초기화시켰을때의 nBuf[1~255]의 값을 넣음
-			nBuf[i - 1] = -1;
+			if (i > 0)
+			{
+				nBuf[i - 1] = -1;
+			}
+			else
+			{
+				printf_s("지워질데이터가 없습니다\n");
+				nBuf[i] = 0; // 초기화시켰을때의 nBuf[1~255]의 값을 넣음
+			}
 			break;
 		}
 	}
@@ -46,7 +60,7 @@ int main()
 	
 	while (_bLoop)
 	{
-		printf_s("\nCmd>"); scanf_s("%d", &_cmd);
+		printf_s("\n(1.show 2.push 3.pop)Cmd>"); scanf_s("%d", &_cmd);
 		switch (_cmd)
 		{
 		case 0:
@@ -57,17 +71,16 @@ int main()
 			showData(nBuf, nBufLength);
 			break;
 		case 2:
-			pushData(nBuf, nBufLength, 3);
+			int _num;
+			printf_s("\ninput number=>"); scanf_s("%d", &_num);
+			pushData(nBuf, nBufLength, _num);
 			break;
 		case 3:
-			popData(nBuf, nBufLength, 3);
+			popData(nBuf, nBufLength);
 			break;
 		default:
 			break;
 		}
 	}
-
-	
-
 	return 0;
 }
