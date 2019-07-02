@@ -70,6 +70,17 @@ void insertToData(int _data,int nlndex) //중간에 큐삽입
 			nLastIndex = nlndex;
 		}
 }
+int delToData(int nlndex)//중간 삭제구간
+{
+	int _r = nBuf[nlndex];
+	
+	for (int i = nlndex; i < nLastIndex; i++)
+		{
+			nBuf[i] = nBuf[i + 1];
+		}
+		nLastIndex--;
+	return _r;
+}
 int main()
 {
 	int _bLoop = 1;
@@ -88,6 +99,7 @@ int main()
 		case 4: {printf_s("del : %d\n", deleteData()); }break; //delete
 		case 5: {int _num; printf_s("input num=>"); scanf_s("%d", &_num); insertData(_num); }break;
 		case 6: {int _num,index; printf_s("input middle num=>"); scanf_s("%d %d", &_num,&index); insertToData(_num,index); }break;
+		case 7: {int index; printf_s("delete middle num=>"); scanf_s("%d", &index); printf_s("%d\n", delToData(index)); }break;
 		default: break;
 		}
 	}
