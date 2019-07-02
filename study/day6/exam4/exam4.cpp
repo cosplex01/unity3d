@@ -2,7 +2,18 @@
 //
 #include <stdio.h>
 #include <iostream>
-
+void displayMap(int *_Map)
+{
+	for (int iy = 0; iy < 8; iy++) {
+		for (int ix = 0; ix < 8; ix++) {
+			int _cell = _Map[(iy * 8) + ix];
+			if (_cell == 0) { printf_s(" "); }
+			else if (_cell == 1) { printf_s("^"); }
+			//printf_s("%d", _Map[(iy*8) + ix]);
+		}
+		printf_s("\n");
+	}
+}
 int main()
 {
 	int _Map[] = {
@@ -16,14 +27,6 @@ int main()
 		1,1,1,1,1,1,1,1
 	};
 
-	for (int iy = 0; iy < 8; iy++) {
-		for (int ix = 0; ix < 8; ix++) {
-			int _cell = _Map[(iy * 8) + ix];
-			if (_cell == 0) { printf_s(" "); }
-			else if (_cell == 1) { printf_s("^"); }
-			//printf_s("%d", _Map[(iy*8) + ix]);
-		}
-		printf_s("\n");
-	}
+	
 	return 0;
 }
