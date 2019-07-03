@@ -48,5 +48,8 @@ int main()
 	{
 		puts("서로다릅니다");
 	}
+	//문자열 합치기
+	strcat_s(szBuf,sizeof(szBuf)," 뭘고발했요");
+	puts(szBuf);
 	return 0;
 }
