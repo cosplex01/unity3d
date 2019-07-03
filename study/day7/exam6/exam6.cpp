@@ -30,5 +30,6 @@ int main()
 	int num;
 	char szTemp[256];
 	sscanf_s(pNextToken,"%d %s",&num,szTemp,sizeof(szTemp));
+	printf_s("%d %s", num, szTemp, sizeof(szTemp));
   return 0;
 }
