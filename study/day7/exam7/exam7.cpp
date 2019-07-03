@@ -18,9 +18,10 @@ int main()
 
 		if (strcmp(_cmd, "exit")) {
 			_bLoop = false;
+			puts("종료합니다");
 		}
 		else {
-			printf_s("");
+			printf_s("%s 는 알수없는 명령어입니다\n",_cmd);
 		}
 	}
     return 0;
