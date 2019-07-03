@@ -9,6 +9,7 @@ int main()
 	char* pTempNext = NULL; //문자열 기억공간용 포인터변수
 	int _bLoop = true;
 
+	char dataBuffer[16] = {};
 	// 명령어 인자1 인자2 인자3
 	while (_bLoop)
 	{
@@ -16,9 +17,36 @@ int main()
 		gets_s(_szBuf,sizeof(_szBuf));
 		strcpy_s(_cmd,strtok_s(_szBuf," ",&pTempNext));
 
-		if (strcmp(_cmd, "exit")) {
+		if (!strcmp(_cmd, "exit"))
+		{
 			_bLoop = false;
 			puts("종료합니다");
+		}
+		else if (!strcmp(_cmd, "help"))
+		{
+			printf_s("종료 : exit\n");
+			printf_s("도움말 : help\n");
+			printf_s("버퍼내용 보여주기 : show\n");
+			printf_s("버퍼 특정위치에 값넣기 : set position value\n");
+		}
+		else if (!strcmp(_cmd, "show"))
+		{
+			puts("------------------------");
+			for (int i = 0; i < 16; i++)
+			{
+				printf_s("%d", dataBuffer[i]);
+			}
+			puts("\n------------------------\n");
+		}
+		else if (!strcmp(_cmd, "set"))
+		{
+			//puts(pTempNext);
+			int position;
+			int data;
+			position = atoi(strtok_s(NULL," ",&pTempNext));
+			data = atoi(strtok_s(NULL, " ", &pTempNext));
+			dataBuffer[position] = data;
+			
 		}
 		else {
 			printf_s("%s 는 알수없는 명령어입니다\n",_cmd);
