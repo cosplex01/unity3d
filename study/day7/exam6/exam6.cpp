@@ -29,7 +29,7 @@ int main()
 
 	int num;
 	char szTemp[256];
-	sscanf_s(pNextToken,"%d %s",&num,szTemp,sizeof(szTemp));
-	printf_s("%d %s", num, szTemp, sizeof(szTemp));
+	sscanf_s(pNextToken,"%d %s\n",&num,szTemp,sizeof(szTemp));
+	printf_s("%d %s\n", num,szTemp);
   return 0;
 }
