@@ -16,7 +16,12 @@ int main()
 		gets_s(_szBuf,sizeof(_szBuf));
 		strcpy_s(_cmd,strtok_s(_szBuf," ",&pTempNext));
 
-
+		if (strcmp(_cmd, "exit")) {
+			_bLoop = false;
+		}
+		else {
+			printf_s("");
+		}
 	}
     return 0;
 }
