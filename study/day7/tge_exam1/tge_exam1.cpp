@@ -5,41 +5,46 @@
 #include "..\..\..\cstudy\engine\tge.h"
 int main()
 {
-	HANDLE hStdOut;
-	TGE::startTGE(&hStdOut);
+	HANDLE hStdout;
+	TGE::startTGE(&hStdout);
 
-	char szTokens[8][TGE::MAX_TOKEN_SIZE];
+	//char szTokens[8][TGE::MAX_TOKEN_SIZE];
 	char szBuf[256];
 	int bLoop = true;
 	while(bLoop)
 	{
-		puts("명령어를 입력하세요 v.1.1");
-		gets_s(szBuf,sizeof(szBuf));
-		int tokenCount = TGE::doTokenize(szBuf, szTokens);
-		if (strcmp(szTokens[0], "exit") == 0)
+		if (TGE::input::g_KeyTable[VK_RETURN])
 		{
-			bLoop = false;
-		}
-		else if(strcmp(szTokens[0],"clear")==0)
-		{
-			TGE::clearScreenBuffer(TGE::g_chiBuffer, 0x0020, 0x009f);
-			TGE::updateBuffer(hStdOut, TGE::g_chiBuffer);
-		}
-		else if (strcmp(szTokens[0], "setClear") == 0)
-		{
-			TGE::setCharacter(TGE::g_chiBuffer,10,10,TEXT('B'),0x00fc);
-			TGE::updateBuffer(hStdOut, TGE::g_chiBuffer);
-		}
-		else 
-		{
-			printf_s("%s 는 알수없는 명령어 입니다\n", szTokens[0]);
-		}
-		/*for (int i=0; i<tokenCount;i++)
-		{
-			puts(szTokens[i]);
-		}*/
+			TGE::input::pauseInputThread();//쓰레드를 동기입력 모드
+			TGE::input::setEditMode();
 
+			TGE::showCursor(hStdout); //커서 표시
+			TGE::setCursor(hStdout, 0, 1); //커서의 위치 지정
+
+			gets_s(szBuf,sizeof(szBuf)); //입력을 받고
+			if (!strcmp(szBuf,"exit"))
+			{
+				bLoop = false;
+				puts("종료합니다");
+			}
+			//puts(szBuf);
+
+			TGE::input::resumeInputThread();//쓰레드 비동기모드로 변경
+			TGE::input::setNormalMode();
+			TGE::input::g_KeyTable[VK_RETURN]; //재입력 방지
+		}
+
+		TGE::setCursor(hStdout, 0, 0);
+		printf_s("U%-4dD%-4dL%-4dR%-4d",
+			TGE::input::g_KeyTable[VK_UP],
+			TGE::input::g_KeyTable[VK_DOWN],
+			TGE::input::g_KeyTable[VK_LEFT],
+			TGE::input::g_KeyTable[VK_RIGHT]
+		);
+
+		puts("cls"); //화면 클리어
 	}
+
 	TGE::endTGE();
     return 0;
 }
