@@ -13,6 +13,7 @@ int main()
 
 	HANDLE hStdout;
 	TGE::startTGE(&hStdout);
+	TGE::hideCursor(hStdout); //커서 숨기기
 
 	pBackBuf = TGE::CreateScreenBuffer(); // 맵상에서 계속 존재시킬것을 위한 임시버퍼생성
 	TGE::clearScreenBuffer(pBackBuf, 0x0020, 0x0090); //가상버퍼를 클리어시킨다. 처음에
@@ -36,7 +37,7 @@ int main()
 			}
 			else if(!strcmp("chgcolor", TGE::g_szTokens[0])) {
 				changeCursorColor(
-					atoi(TGE::g_szTokens[0])
+					atoi(TGE::g_szTokens[1])
 				);
 				puts("color");
 			}

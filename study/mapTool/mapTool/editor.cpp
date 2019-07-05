@@ -19,7 +19,7 @@ void changeCursorColor(int nColor)
 
 void applyEditor(HANDLE hStdout)
 {
-	TGE::clearScreenBuffer(0x0020, 0x00f0); //화면버퍼 클리어
+	//TGE::clearScreenBuffer(0x0020, 0x00f0); //화면버퍼 클리어
 	//TGE::setCharacter(TGE::g_chiBuffer, cursor_x, cursor_y, 0x0020, 0x00f0); //커서선택하여 그리기
 
 	if (TGE::input::g_KeyTable[VK_UP]) {
@@ -44,4 +44,7 @@ void applyEditor(HANDLE hStdout)
 	}
 	TGE::copyScreenBuffer(TGE::g_chiBuffer, pBackBuf); //가상 버퍼에 스크린버퍼 복사해둠[더블 버퍼링 트릭]
 	TGE::setCharacter(TGE::g_chiBuffer, cursor_x, cursor_y, 0x00c0, cursorAttr); //커서선택하여 그리기
+
+	TGE::setCursor(hStdout, 0, 20);
+	printf_s("커서상태:%-4d,%-4d,%-4d\n",cursor_x,cursor_y,cursorAttr);
 }
