@@ -39,12 +39,12 @@ void applyEditor(HANDLE hStdout)
 		TGE::input::g_KeyTable[VK_RIGHT] = false;
 	}
 	if (TGE::input::g_KeyTable[VK_SPACE]) {
-		TGE::setCharacter(TGE::g_chiBuffer, cursor_x, cursor_y, 0x00c0, cursorAttr); //커서선택하여 그리기
+		TGE::setCharacter(pBackBuf, cursor_x, cursor_y, 0x00c0, cursorAttr); //커서선택하여 그리기[가상버퍼에 그리기]
 		TGE::input::g_KeyTable[VK_SPACE] = false;
 	}
 	TGE::copyScreenBuffer(TGE::g_chiBuffer, pBackBuf); //가상 버퍼에 스크린버퍼 복사해둠[더블 버퍼링 트릭]
-	TGE::setCharacter(TGE::g_chiBuffer, cursor_x, cursor_y, 0x00c0, cursorAttr); //커서선택하여 그리기
+	TGE::setCharacter(TGE::g_chiBuffer, cursor_x, cursor_y, 0x00c0, 0x00f0); //커서선택하여 그리기
 
-	TGE::setCursor(hStdout, 0, 20);
+	TGE::setCursor(hStdout, 0, 26);
 	printf_s("커서상태:%-4d,%-4d,%-4d\n",cursor_x,cursor_y,cursorAttr);
 }

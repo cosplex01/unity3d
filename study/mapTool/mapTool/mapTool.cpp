@@ -26,7 +26,7 @@ int main()
 			TGE::input::setEditMode();
 
 			TGE::showCursor(hStdout);
-			TGE::setCursor(hStdout, 0, 20);
+			TGE::setCursor(hStdout, 0, 27);
 
 			char szBuf[256];
 			gets_s(szBuf);
@@ -38,8 +38,7 @@ int main()
 			else if(!strcmp("chgcolor", TGE::g_szTokens[0])) {
 				changeCursorColor(
 					atoi(TGE::g_szTokens[1])
-				);
-				puts("color");
+				); // 커서색 변경
 			}
 			else {
 				puts("알수없는 명령어입니다");
