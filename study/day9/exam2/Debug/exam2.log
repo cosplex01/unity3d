@@ -1,8 +1,0 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppClean.targets(76,5): warning : 'c:\cs2019\unity3d\study\day9\debug\exam2.exe' 경로에 대한 액세스가 거부되었습니다.
-  tge.cpp
-  exam2.cpp
-  sample1.cpp
-  sample2.cpp
-  sample3.cpp
-  코드를 생성하고 있습니다...
-  exam2.vcxproj -> C:\cs2019\unity3d\study\day9\Debug\exam2.exe

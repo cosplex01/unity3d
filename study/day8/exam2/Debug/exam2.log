@@ -1,3 +1,0 @@
-﻿  exam2.cpp
-C:\cs2019\unity3d\study\day8\exam2\exam2.cpp(10,7): warning C4101:  'pB' :참조되지 않은 지역 변수입니다.
-  exam2.vcxproj -> C:\cs2019\unity3d\study\day8\Debug\exam2.exe

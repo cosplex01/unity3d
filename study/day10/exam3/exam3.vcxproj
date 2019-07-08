@@ -20,9 +20,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{ED329F86-0E88-447E-A0E7-9B47EBC39A6B}</ProjectGuid>
+    <ProjectGuid>{3E6D0004-6E5B-4CAF-8CA7-E9524433884B}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>mapTool</RootNamespace>
+    <RootNamespace>exam3</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -151,9 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\cstudy\cstudy\engine\tge.cpp" />
-    <ClCompile Include="editor.cpp" />
-    <ClCompile Include="mapTool.cpp" />
+    <ClCompile Include="exam3.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
