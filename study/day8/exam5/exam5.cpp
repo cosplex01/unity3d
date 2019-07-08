@@ -23,6 +23,7 @@ int main()
 	printf_s("%p  | %p\n", a,pA);
 
 	a[0] = 10; a[1] = 11; a[2] = 15;
+	*(a + 1) = 21; //a[1] =21;
 	printf_s("sum : %d | %d\n",sizeof(a),arraySum(a,sizeof(a)/sizeof(int),a));
 	return 0;
 }

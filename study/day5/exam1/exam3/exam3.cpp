@@ -19,7 +19,7 @@ int main()
 	if (num <= _input) {
 		printf_s("숫자가 큽니다\n");
 	}
-	if (num > _input) {
+	else {
 		printf_s("숫자가 작습니다\n");
 	}
 	printf_s("종료합니다\n");

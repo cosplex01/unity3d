@@ -18,6 +18,17 @@ int main()
 		{
 			displayBuf(szBuf,sizeof(szBuf));
 		} break;
+		case 2: 
+		{
+			puts("문자열을 입력하세요"); getchar(); gets_s(szBuf, sizeof(szBuf));
+		}break;
+		case 3:
+		{
+			int nindex;
+			char ch; 
+			scanf_s("%d %c",&nindex,&ch,1);
+			insertChar(szBuf, sizeof(szBuf), nindex, ch);
+		}break;
 		default:break;
 		}
 	}

@@ -25,3 +25,8 @@ void displayBuf(char strTemp[], int nBufsize)
 	}
 	else puts(strTemp);
 }
+void insertChar(char szBuf[], int nBufSize, int nindex, char ch)
+{
+	szBuf[nindex] = ch;
+
+}

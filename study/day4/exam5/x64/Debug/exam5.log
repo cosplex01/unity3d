@@ -1,4 +1,1 @@
-﻿  exam5.cpp
-C:\cs2019\unity3d\study\day4\exam5\exam5.cpp(10,13): warning C4309:  '초기화 중': 상수 값이 잘립니다.
-C:\cs2019\unity3d\study\day4\exam5\exam5.cpp(19,15): warning C4309:  '초기화 중': 상수 값이 잘립니다.
-  exam5.vcxproj -> C:\cs2019\unity3d\study\day4\x64\Debug\exam5.exe
+﻿

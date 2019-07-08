@@ -17,7 +17,7 @@ int main()
 	//scanf_s("%d", &num);
 	//printf_s("%d \n", num);
 	printf_s("정수2개를 입력하시오 (구분은 공백으로)\n");
-	scanf_s("%d %d", &num, &num2);
+	scanf_s("%d%d", &num, &num2);
 	printf_s("%d %d\n", num, num2);
 
 	printf_s("정수2개를 입력하시오 (구분은 /으로)\n");

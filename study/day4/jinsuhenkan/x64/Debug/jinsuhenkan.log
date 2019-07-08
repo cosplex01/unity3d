@@ -1,12 +1,1 @@
-﻿  jinsuhenkan.cpp
-C:\cs2019\unity3d\study\day4\jinsuhenkan\jinsuhenkan.cpp(16,11): warning C4477:  'printf_s' : 서식 문자열 '%d'에 'int' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'size_t'입니다.
-C:\cs2019\unity3d\study\day4\jinsuhenkan\jinsuhenkan.cpp(16,11): message :  서식 문자열에서 '%zd'을(를) 사용하는 것이 좋습니다.
-C:\cs2019\unity3d\study\day4\jinsuhenkan\jinsuhenkan.cpp(17,11): warning C4477:  'printf_s' : 서식 문자열 '%d'에 'int' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'size_t'입니다.
-C:\cs2019\unity3d\study\day4\jinsuhenkan\jinsuhenkan.cpp(17,11): message :  서식 문자열에서 '%zd'을(를) 사용하는 것이 좋습니다.
-C:\cs2019\unity3d\study\day4\jinsuhenkan\jinsuhenkan.cpp(20,11): warning C4477:  'printf_s' : 서식 문자열 '%d'에 'int' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'size_t'입니다.
-C:\cs2019\unity3d\study\day4\jinsuhenkan\jinsuhenkan.cpp(20,11): message :  서식 문자열에서 '%zd'을(를) 사용하는 것이 좋습니다.
-C:\cs2019\unity3d\study\day4\jinsuhenkan\jinsuhenkan.cpp(21,11): warning C4477:  'printf_s' : 서식 문자열 '%d'에 'int' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'size_t'입니다.
-C:\cs2019\unity3d\study\day4\jinsuhenkan\jinsuhenkan.cpp(21,11): message :  서식 문자열에서 '%zd'을(를) 사용하는 것이 좋습니다.
-C:\cs2019\unity3d\study\day4\jinsuhenkan\jinsuhenkan.cpp(24,11): warning C4477:  'printf_s' : 서식 문자열 '%d'에 'int' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'size_t'입니다.
-C:\cs2019\unity3d\study\day4\jinsuhenkan\jinsuhenkan.cpp(24,11): message :  서식 문자열에서 '%zd'을(를) 사용하는 것이 좋습니다.
-  jinsuhenkan.vcxproj -> C:\cs2019\unity3d\study\day4\x64\Debug\jinsuhenkan.exe
+﻿
