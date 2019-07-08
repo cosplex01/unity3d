@@ -18,10 +18,10 @@
     <ClCompile Include="mapTool.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\cstudy\engine\tge.cpp">
+    <ClCompile Include="editor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="editor.cpp">
+    <ClCompile Include="..\..\..\cstudy\engine\tge.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
