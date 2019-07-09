@@ -14,7 +14,12 @@ int main()
 	for (int i = 0; i < 2; i++)
 	{
 		printf_s("%s \n",pObj[i]->m_szName);
+		
+	}
+	for (int i = 0; i < 2; i++)
+	{
 		releseGameObject(pObj[i]);
 	}
+
    return 0;
 }
