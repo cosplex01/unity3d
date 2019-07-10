@@ -12,19 +12,6 @@ void parse_chgcolor(void* pObj)
 	);
 }
 
-void test1(void* pObj)
-{
-	printf_s("test 1 %s \n", ((char(*)[64])pObj)[1]);
-}
-void test2(void* pObj)
-{
-	printf_s("test 2\n");
-}
-void test3(void* pObj)
-{
-	printf_s("test 3\n");
-}
-
 void parse_moveCursor(void* pObj)
 {
 	moveCursor(
@@ -39,8 +26,33 @@ void parse_clear(void* pObj)
 {
 	clearScreen(atoi(((char(*)[64])pObj)[1]));
 }
+/*
+struct S_FunctionTable {
+	const char* m_szNameTable[64];
+	void* m_arFpHandler[64];
+};
+S_FunctionTable g_FunctionTable;
 
+void addFunctionTable(const char* pszName, void* fp)
+{
+	g_FunctionTable.m_arFpHandler[]
+}
+*/
+void parse_SaveMapData(void* pObj)
+{
+	char* fileName = ((char(*)[64])pObj)[1];
+	TGE::saveBufferBinary(TGE::g_chiBuffer, fileName);
+	puts("쓰기 완료");
+}
+void parse_LoadMapData(void* pObj)
+{
+	char* fileName = ((char(*)[64])pObj)[1];
+	TGE::loadBufferBinary(TGE::g_chiBuffer, fileName);
+	puts("읽기 완료");
+}
 const char* nameTable[] = {
+	"saveMap",
+	"loadMap",
 	"test1",
 	"test2",
 	"test3",
@@ -50,6 +62,8 @@ const char* nameTable[] = {
 };
 
 void* arrayHandlers[] = {
+	parse_SaveMapData,
+	parse_LoadMapData,
 	test1,
 	test2,
 	test3,

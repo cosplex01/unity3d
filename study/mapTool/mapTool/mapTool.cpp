@@ -8,60 +8,13 @@
 extern CHAR_INFO* pBackBuf;
 void applyEditor(HANDLE hStdout);
 void changeCursorColor(int Color);
-void makeCoverline();
 void moveCursor(int x, int y);
 void parseCommand();
-void parse_chgcolor(void* pObj)
-{
-	changeCursorColor(
-		atoi(((char(*)[64])pObj)[1])
-		);
-}
-void parse_moveCursor(void* pObj)
-{
-	moveCursor(
-		atoi(((char(*)[64])pObj)[1]),
-		atoi(((char(*)[64])pObj)[2])
-	);
-}
-void test1(void *pObj)
-{
-	printf_s("test1 %s \n", ((char(*)[64])pObj));
-}
-void test2(void *pObj)
-{
-	printf_s("test2\n");
-}
-void test3(void *pObj) 
-{
-	printf_s("test3\n");
-}
-const char* nameTable[] = {
-	"test1",
-	"test2",
-	"test3",
-	"chgcolor",
-	"mvCursor" //movecursor xpos,ypos
-};
-void* arrayHandelers[] = {
-	test1,
-	test2,
-	test3,
-	parse_chgcolor,
-	parse_moveCursor
-};
+void parse_chgcolor(void* pObj);
+void parse_clear(void* pObj);
+void parse_LoadMapData(void* pObj);
+void parse_SaveMapData(void* pObj);
 
-void parse_clear(void *pObj)
-{
-	int _Table[] = {
-		0x00,
-		0xc0,0x40,//밝은 빨간, 어두운 빨간
-		0xa0,0x20,//밝은 녹색, 어두운 녹색
-		0x90,0x10, //밝은 파란, 어두운 파란
-		0xf0,0x80 //밝은 빨강, 어두운 빨강
-	};
-	TGE::clearScreenBuffer(pBackBuf,0x0020,_Table[atoi(((char(*)[64])pObj)[1])]);
-}
 int main()
 {
 	int bLoop = true;
