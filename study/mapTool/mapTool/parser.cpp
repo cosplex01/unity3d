@@ -53,9 +53,6 @@ void parse_LoadMapData(void* pObj)
 const char* nameTable[] = {
 	"saveMap",
 	"loadMap",
-	"test1",
-	"test2",
-	"test3",
 	"chgColor", //chgColor color
 	"mvCursor", //moveCursor xpos ypos
 	"clear" //clear color
@@ -64,9 +61,6 @@ const char* nameTable[] = {
 void* arrayHandlers[] = {
 	parse_SaveMapData,
 	parse_LoadMapData,
-	test1,
-	test2,
-	test3,
 	parse_chgcolor,
 	parse_moveCursor,
 	parse_clear

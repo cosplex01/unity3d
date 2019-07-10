@@ -3,16 +3,7 @@
 #include "playerObject.h"
 #include <iostream>
 
-int map[64] = {
-	1,1,1,1,1,1,1,1,
-	1,0,0,0,0,0,0,1,
-	1,0,10,0,0,0,0,1,
-	1,0,0,0,0,0,0,1,
-	1,0,0,0,0,0,0,1,
-	1,0,0,0,0,0,0,1,
-	1,0,0,0,0,0,0,1,
-	1,1,1,1,1,1,1,1
-};
+int map[2000];
 
 int main()
 {
@@ -23,35 +14,36 @@ int main()
 	S_PlayerObject playerObj;
 	initPlayerObject(&playerObj, "랜디");
 
-
 	int bLoop = true;
 
 	UINT64 ddwTick = TGE::util::GetTimeMs64();
 	UINT64 accTick = 0;
 
 	CHAR_INFO* pBackBuf = TGE::CreateScreenBuffer();
-
-	TGE::clearScreenBuffer(pBackBuf, 0x0020, 0x0000);
+	TGE::loadBufferBinary(pBackBuf, "level1.map");
+	//TGE::clearScreenBuffer(pBackBuf, 0x0020, 0x0000);
 
 	int regenPosX, regenPosY;
 
-	for (int iy = 0; iy < 8; iy++)
+	for (int iy = 0; iy < 25; iy++)
 	{
-		for (int ix = 0; ix < 8; ix++)
+		for (int ix = 0; ix < 80; ix++)
 		{
-			int nTileIndex = map[iy * 8 + ix];
-			if (nTileIndex == 1) {
-				TGE::setCharacter(pBackBuf, ix, iy, 0x0020, 0x00a0);
+			int nlndex = iy * 80 + ix;
+
+			if (pBackBuf[nlndex].Attributes == 0xF0) {
+				map[nlndex] = 1;
 			}
-			else if (nTileIndex) {
-				regenPosX = ix; //리젠 위치 찾기 
+			else if (pBackBuf[nlndex].Attributes == 0x40) {
+				regenPosX = ix;
 				regenPosY = iy;
 			}
 			else {
-				TGE::setCharacter(pBackBuf, ix, iy, 0x0020, 0x0000);
+				map[nlndex] = 0;
 			}
 		}
 	}
+	//free(pBackBuf);
 
 	playerObj.m_fXpos = regenPosX;
 	playerObj.m_fYpos = regenPosY;
@@ -114,6 +106,7 @@ int main()
 
 	TGE::endTGE();
 
+	free(pBackBuf);
 	releasePlayerObject(&playerObj);
 
 	return 0;

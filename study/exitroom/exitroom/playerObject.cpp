@@ -28,7 +28,7 @@ void applyPlayerObject(S_PlayerObject* pObj,double _fDelta,int *pMap)
 	else if (TGE::input::g_KeyTable[VK_LEFT]) {
 		int chkX = (int)(pObj->m_fXpos - 1);
 		int chkY = (int)pObj->m_fYpos;
-		if (pMap[chkY * 8 + chkX] != 1)
+		if (pMap[chkY * 80 + chkX] != 1)
 		{
 			pObj->m_fXpos -= _delta;
 		}
@@ -38,7 +38,7 @@ void applyPlayerObject(S_PlayerObject* pObj,double _fDelta,int *pMap)
 	else if (TGE::input::g_KeyTable[VK_RIGHT]) {
 		int chkX = (int)(pObj->m_fXpos + 1);
 		int chkY = (int)pObj->m_fYpos;
-		if (pMap[chkY * 8 + chkX] != 1)
+		if (pMap[chkY * 80 + chkX] != 1)
 		{
 			pObj->m_fXpos += _delta;
 		}
