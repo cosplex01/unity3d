@@ -4,7 +4,9 @@
 #include "framework.h"
 #include "exit4.h"
 
+#define MY_DEBUG 1
 #define MAX_LOADSTRING 100
+
 
 // 전역 변수:
 HINSTANCE hInst;                                // 현재 인스턴스입니다.
@@ -173,6 +175,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			szTemp2[32] = L'\x00';
 			TextOut(hdc, 0, 50, szTemp2, wcslen(szTemp2));
 
+			swprintf_s(szTemp2, sizeof(szTemp2)/sizeof(TCHAR),L"%d",MAX_LOADSTRING);
+			TextOut(hdc, 0, 90, szTemp2, wcslen(szTemp2));
+#ifdef MY_DEBUG
+			OutputDebugString(L"debug예시\n");
+#endif
             EndPaint(hWnd, &ps);
         }
         break;
