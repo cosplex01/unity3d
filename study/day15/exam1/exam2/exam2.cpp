@@ -1,8 +1,8 @@
-﻿// exam1.cpp : 애플리케이션에 대한 진입점을 정의합니다.
+﻿// exam2.cpp : 애플리케이션에 대한 진입점을 정의합니다.
 //
 
 #include "framework.h"
-#include "exam1.h"
+#include "exam2.h"
 
 #define MAX_LOADSTRING 100
 
@@ -29,7 +29,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     // 전역 문자열을 초기화합니다.
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
-    LoadStringW(hInstance, IDC_EXAM1, szWindowClass, MAX_LOADSTRING);
+    LoadStringW(hInstance, IDC_EXAM2, szWindowClass, MAX_LOADSTRING);
     MyRegisterClass(hInstance);
 
     // 애플리케이션 초기화를 수행합니다:
@@ -38,7 +38,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         return FALSE;
     }
 
-    HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_EXAM1));
+    HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_EXAM2));
 
     MSG msg;
 
@@ -73,10 +73,10 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     wcex.cbClsExtra     = 0;
     wcex.cbWndExtra     = 0;
     wcex.hInstance      = hInstance;
-    wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_EXAM1));
+    wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_EXAM2));
     wcex.hCursor        = LoadCursor(nullptr, IDC_ARROW);
     wcex.hbrBackground  = (HBRUSH)(COLOR_WINDOW+1);
-    wcex.lpszMenuName   = MAKEINTRESOURCEW(IDC_EXAM1);
+    wcex.lpszMenuName   = MAKEINTRESOURCEW(IDC_EXAM2);
     wcex.lpszClassName  = szWindowClass;
     wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 
@@ -104,6 +104,15 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    {
       return FALSE;
    }
+   CreateWindow(L"edit", NULL,
+	   WS_CHILD | WS_VISIBLE | WS_BORDER | CBS_AUTOHSCROLL,
+	   0,128,256,32,
+	   hWnd, (HMENU)1002, hInst, NULL);
+   CreateWindow(L"button",L"클릭하세요",
+	   WS_CHILD|WS_VISIBLE|BS_PUSHBUTTON,
+	   0,0,128,32,
+	   hWnd,(HMENU)1001,hInst,NULL
+   );
 
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
@@ -131,17 +140,17 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             // 메뉴 선택을 구문 분석합니다:
             switch (wmId)
             {
-			case IDM_TEST_ITEM1:
+			case 1001:
 			{
 				HDC dc = GetDC(hWnd);
 
-				TextOut(dc, 0, 0, L"아스카 아직 세상은 살만한 곳이야, 부탁할께..", wcslen(L"아스카 아직 세상은 살만한 곳이야, 부탁할께.."));
+				TCHAR szBuf[256];
+				GetWindowText(GetDlgItem(hWnd,1002),szBuf,sizeof(szBuf)/sizeof(TCHAR));
 
+				TextOut(dc,10,40,szBuf,wcslen(szBuf));
 				ReleaseDC(hWnd, dc);
 			}
-				
 				break;
-
             case IDM_ABOUT:
                 DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
                 break;
