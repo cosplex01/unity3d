@@ -202,6 +202,9 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 //  WM_DESTROY  - 종료 메시지를 게시하고 반환합니다.
 //
 //
+int numFirst = 0;
+int numSecond = 0;
+
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	int nums[3];
@@ -215,6 +218,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     {
     case WM_COMMAND:
         {
+			HDC hdc = GetDC(hWnd);
             int wmId = LOWORD(wParam);
             // 메뉴 선택을 구문 분석합니다:
             switch (wmId)
@@ -225,10 +229,76 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				InvalidateRect(hWnd, NULL, TRUE);
 			}
 			break;
-			case 1003: //-
+			case 1006: //0
 			{
-				nums[2] = nums[0] - nums[1];
-				InvalidateRect(hWnd, NULL, TRUE);
+				
+				numFirst = 10 * numFirst + 0;
+				swprintf_s(szTemp,L"%d",numFirst);
+				TextOut(hdc, 0, 0, szTemp, wcslen(szTemp));
+				//InvalidateRect(hWnd, NULL, TRUE);
+			}
+			break;
+			case 1007: //1
+			{
+				numFirst = 10 * numFirst + 1;
+				swprintf_s(szTemp, L"%d", numFirst);
+				TextOut(hdc, 0, 0, szTemp, wcslen(szTemp));
+			}
+			break;
+			case 1008: //2
+			{
+				numFirst = 10 * numFirst +2;
+				swprintf_s(szTemp, L"%d", numFirst);
+				TextOut(hdc, 0, 0, szTemp, wcslen(szTemp));
+			}
+			break;
+			case 1009: //3
+			{
+				numFirst = 10 * numFirst + 3;
+				swprintf_s(szTemp, L"%d", numFirst);
+				TextOut(hdc, 0, 0, szTemp, wcslen(szTemp));
+			}
+			break;
+			case 1010: //4
+			{
+				numFirst = 10 * numFirst + 4;
+				swprintf_s(szTemp, L"%d", numFirst);
+				TextOut(hdc, 0, 0, szTemp, wcslen(szTemp));
+			}
+			break;
+			case 1011: //5
+			{
+				numFirst = 10 * numFirst + 5;
+				swprintf_s(szTemp, L"%d", numFirst);
+				TextOut(hdc, 0, 0, szTemp, wcslen(szTemp));
+			}
+			break;
+			case 1012: //6
+			{
+				numFirst = 10 * numFirst + 6;
+				swprintf_s(szTemp, L"%d", numFirst);
+				TextOut(hdc, 0, 0, szTemp, wcslen(szTemp));
+			}
+			break;
+			case 1013: //7
+			{
+				numFirst = 10 * numFirst + 7;
+				swprintf_s(szTemp, L"%d", numFirst);
+				TextOut(hdc, 0, 0, szTemp, wcslen(szTemp));
+			}
+			break;
+			case 1014: //8
+			{
+				numFirst = 10 * numFirst + 8;
+				swprintf_s(szTemp, L"%d", numFirst);
+				TextOut(hdc, 0, 0, szTemp, wcslen(szTemp));
+			}
+			break;
+			case 1015: //9
+			{
+				numFirst = 10 * numFirst + 9;
+				swprintf_s(szTemp, L"%d", numFirst);
+				TextOut(hdc, 0, 0, szTemp, wcslen(szTemp));
 			}
 			break;
 			case 1017:
