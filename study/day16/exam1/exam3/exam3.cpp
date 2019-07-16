@@ -17,21 +17,30 @@ BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
-
+int g_nRenderFsm = 0; //0 - stop, 1 -line 2-rect
 void OnGdiPlusRender(double fDelta, Graphics* pGrp)
 {
-	Gdiplus::Pen penObj(Color(0, 0, 0));
+	Gdiplus::Pen penObj(Color(0,0,0));
+	Gdiplus::SolidBrush brushObj(Color(0, 0, 0));
 
-	penObj.SetColor(Color(rand() % 256, rand() % 256, rand() % 256));
-	pGrp->DrawLine(&penObj,rand()%320, rand()%248, rand()%320, rand()%248);
-
-	penObj.SetColor(Color(rand() % 256, rand() % 256, rand() % 256));
-	pGrp->DrawRectangle(&penObj,
-		Gdiplus::Rect(rand() % 320, rand() % 248, rand() % 320, rand() % 248));
-
-	Gdiplus::SolidBrush brushObj(Color(0,0,0));
-	pGrp->FillRectangle(&brushObj,
-		Gdiplus::Rect(rand() % 320, rand() % 248, rand() % 320, rand() % 248));
+	switch (g_nRenderFsm)
+	{
+	case 0:
+		break;
+	case 1://line
+		penObj.SetColor(Color(rand() % 256, rand() % 256, rand() % 256));
+		pGrp->DrawLine(&penObj, rand() % 320, rand() % 248, rand() % 320, rand() % 248);
+		break;
+	case 2://rect
+		penObj.SetColor(Color(rand() % 256, rand() % 256, rand() % 256));
+		pGrp->DrawRectangle(&penObj,
+			Gdiplus::Rect(rand() % 320, rand() % 248, rand() % 320, rand() % 248));
+		break;
+	default:
+		break;
+	}
+		//pGrp->FillRectangle(&brushObj,
+		//Gdiplus::Rect(rand() % 320, rand() % 248, rand() % 320, rand() % 248));
 }
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
@@ -140,6 +149,15 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             // 메뉴 선택을 구문 분석합니다:
             switch (wmId)
             {
+			case IDM_Draw_Line:
+				g_nRenderFsm = 1;
+				break;
+			case IDM_DRAW_BOX:
+				g_nRenderFsm = 2;
+				break;
+			case IDM_DRAW_STOP:
+				g_nRenderFsm = 0;
+				break;
             case IDM_ABOUT:
                 DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
                 break;
