@@ -1,8 +1,8 @@
-﻿// jipge.cpp : 애플리케이션에 대한 진입점을 정의합니다.
+﻿// exam2.cpp : 애플리케이션에 대한 진입점을 정의합니다.
 //
 
 #include "framework.h"
-#include "jipge.h"
+#include "exam2.h"
 
 #define MAX_LOADSTRING 100
 
@@ -16,47 +16,43 @@ ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
-
-const int SCREEN_H = 640;
-const int SCREEN_W = 640;
-
-double g_Joint[2] = { 0 };
-int g_keyTable[1024] = { 0};
-
-void OnGidPlusRender(double fDelta, Graphics* pGrp)
+const int SCREEN_H = 512;
+const int SCREEN_W = 512;
+irr::core::line2df g_lines[2] = {
+	{{-100,-100},{100,100}},
+	{{-50,-50},{-20,-100}}
+};
+void OnRender(irr::f64 fDelta, Graphics* pGrp)
 {
-	if (fDelta > 0) {
-		if (g_keyTable[VK_LEFT])
-		{
-			g_Joint[0] += fDelta * 45;
-		}
-		if (g_keyTable[VK_RIGHT]) g_Joint[0] -= fDelta * 45;
-		if (g_keyTable[VK_DOWN]) g_Joint[1] -= fDelta * 45;
-		if (g_keyTable[VK_UP]) g_Joint[1] += fDelta * 45;
+	pGrp->Clear(Color::Bisque);
+	
+	Pen _pen(Color::White);
+	pGrp->DrawLine(&_pen,0,SCREEN_H/2,SCREEN_W,SCREEN_H/2); //세로라인
+	pGrp->DrawLine(&_pen, SCREEN_W / 2,0,SCREEN_W/2, SCREEN_H); //가로라인
+
+	pGrp->TranslateTransform(SCREEN_W/2,SCREEN_H/2);
+
+	for (int i = 0; i < 2; i++) { //라인을 그린다
+		pGrp->DrawLine(&_pen,
+			g_lines[i].start.X, g_lines[i].start.Y,
+			g_lines[i].end.X, g_lines[i].end.Y
+		);
 	}
 
-	pGrp->Clear(Color(0, 0, 0));
-	Pen _pen(Color(255, 0, 255));
-	
-	pGrp->DrawLine(&_pen, 0, SCREEN_H / 2, SCREEN_W, SCREEN_H / 2);
-	pGrp->DrawLine(&_pen, SCREEN_W / 2, 0, SCREEN_W / 2, SCREEN_H);
+	irr::core::vector2df crossPoint; //vector로 점을 지정
 
-	pGrp->TranslateTransform(SCREEN_W / 2, SCREEN_H / 2);
-	pGrp->RotateTransform(-g_Joint[0]);
-	pGrp->DrawRectangle(&_pen, -8, -8, 96, 16);
-	pGrp->TranslateTransform(82,0);
-	Gdiplus::GraphicsState _state = pGrp->Save();
+	GraphicsState _gs;
+	if (g_lines[0].intersectWith(g_lines[1], crossPoint)) //지정한 점과 그린 라인을 접점 시킨다
+	{
+		_gs = pGrp->Save();
 
-	pGrp->RotateTransform(-g_Joint[1]);
-	pGrp->DrawRectangle(&_pen, -8, -8, 96, 16);
+		pGrp->TranslateTransform(crossPoint.X, crossPoint.Y); //접점쪽으로 이동
+		pGrp->DrawEllipse(&_pen, Rect(-8, -8, 16, 16));
 
-	pGrp->Restore(_state);
-	pGrp->RotateTransform(g_Joint[1]);
-	pGrp->DrawRectangle(&_pen, -8, -8, 96, 16);
-	
+		pGrp->Restore(_gs);
+	}
 
 	pGrp->ResetTransform();
-
 }
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
@@ -70,7 +66,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     // 전역 문자열을 초기화합니다.
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
-    LoadStringW(hInstance, IDC_JIPGE, szWindowClass, MAX_LOADSTRING);
+    LoadStringW(hInstance, IDC_EXAM2, szWindowClass, MAX_LOADSTRING);
     MyRegisterClass(hInstance);
 
     // 애플리케이션 초기화를 수행합니다:
@@ -79,13 +75,12 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         return FALSE;
     }
 
-    HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_JIPGE));
+    HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_EXAM2));
 
-    MSG msg;
-
+    
+	MSG msg;
 	plusEngine::GDIPLUS_Loop(msg, Rect(0, 0, SCREEN_W, SCREEN_H), NULL, NULL,
-		OnGidPlusRender, NULL);
-
+		OnRender, NULL);
     return (int) msg.wParam;
 }
 
@@ -107,10 +102,10 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     wcex.cbClsExtra     = 0;
     wcex.cbWndExtra     = 0;
     wcex.hInstance      = hInstance;
-    wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_JIPGE));
+    wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_EXAM2));
     wcex.hCursor        = LoadCursor(nullptr, IDC_ARROW);
     wcex.hbrBackground  = (HBRUSH)(COLOR_WINDOW+1);
-    wcex.lpszMenuName   = MAKEINTRESOURCEW(IDC_JIPGE);
+    wcex.lpszMenuName   = MAKEINTRESOURCEW(IDC_EXAM2);
     wcex.lpszClassName  = szWindowClass;
     wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 
@@ -159,19 +154,16 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
     {
+	case WM_LBUTTONDOWN: //마우스 위치를 잡아서 표시한다
+		g_lines[1].end.X = (irr::f32)(LOWORD(lParam)) - SCREEN_W/2; 
+		g_lines[1].end.Y = (irr::f32)(HIWORD(lParam)) - SCREEN_H/2;
+		break;
     case WM_COMMAND:
         {
-	case WM_KEYUP:
-		g_keyTable[wParam] = 1;
-		break;
-	case WM_KEYDOWN:
-		g_keyTable[wParam] = 0;
-		break;
             int wmId = LOWORD(wParam);
             // 메뉴 선택을 구문 분석합니다:
             switch (wmId)
             {
-			
             case IDM_ABOUT:
                 DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
                 break;

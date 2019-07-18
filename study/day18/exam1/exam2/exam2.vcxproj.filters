@@ -24,12 +24,12 @@
     <ClInclude Include="Resource.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="jipge.h">
+    <ClInclude Include="exam2.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="jipge.cpp">
+    <ClCompile Include="exam2.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\cstudy\engine\plusEngine.cpp">
@@ -37,7 +37,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="jipge.rc">
+    <ResourceCompile Include="exam2.rc">
       <Filter>리소스 파일</Filter>
     </ResourceCompile>
   </ItemGroup>
@@ -45,7 +45,7 @@
     <Image Include="small.ico">
       <Filter>리소스 파일</Filter>
     </Image>
-    <Image Include="jipge.ico">
+    <Image Include="exam2.ico">
       <Filter>리소스 파일</Filter>
     </Image>
   </ItemGroup>
